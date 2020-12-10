@@ -1,0 +1,12 @@
+{
+  "name": "electron-callable-example",
+  "main": "main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron ."
+  },
+  "author": "Feiox <Fei2037@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^11.0.4"
+  }
+}

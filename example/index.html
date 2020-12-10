@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>A electron-callable module example</title>
+  <meta content="script-src 'self' 'unsafe-inline';" http-equiv="Content-Security-Policy"/>
+  <style>
+      body {
+          background-color: white;
+      }
+
+      .examples div {
+          margin: 10px;
+      }
+  </style>
+</head>
+<body>
+<h1>Hello, Electron!</h1>
+<div class="examples">
+  <div>
+    <button onclick="onClick()">调用 main.js 中的 同步 方法</button>
+  </div>
+  <div>
+    <button onclick="onClick2()">调用 main.js 中的 async/await 异步 方法</button>
+  </div>
+  <div>
+    <button onclick="onClick()">从 main.js 中调用主窗口的方法</button>
+  </div>
+  <div>
+    <button onclick="onClick()">短时间内频繁调用 main.js 中的方法</button>
+  </div>
+  <div>
+    <button onclick="onClick()">在主窗口中订阅 main.js 中的变量变化</button>
+  </div>
+  <div>
+    <button onclick="onClick()">全局统一的事件总线</button>
+  </div>
+  <div>
+    <button onclick="onClick()">全局共享的变量</button>
+  </div>
+</div>
+
+
+<script>
+  const Fun = require('../src/index').createRendererFunctionsBus()
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function onClick() {
+    // 用法
+    Fun.demoSync({ k: '123' }).then(d => {
+      console.log('recv from main', d)
+    })
+  }
+
+  async function onClick2() {
+    // 用法
+    let d = await Fun.demoAsync({ k: '123' })
+    console.log('recv from main', d)
+  }
+
+  Fun.webSync = function ({ k }) {
+    return { resp: 'ok', k }
+  }
+
+  Fun.webAsync = async function ({ k }) {
+    await sleep(2000)
+    return { resp: 'ok', k }
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "electron-callable",
+  "version": "0.0.1",
+  "description": "Call the Electron IPC in the same way as the local function.",
+  "main": "src/index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Feiox/electron-callable.git"
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "Feiox <Fei2037@gmail.com>",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/Feiox/electron-callable/issues"
+  },
+  "homepage": "https://github.com/Feiox/electron-callable"
+}
